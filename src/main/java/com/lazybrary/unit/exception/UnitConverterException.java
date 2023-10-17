@@ -1,4 +1,4 @@
-package com.lazybrary.unitconverter.exception;
+package com.lazybrary.unit.exception;
 
 /**
  * Exception used to indicate a problem while convert to unit

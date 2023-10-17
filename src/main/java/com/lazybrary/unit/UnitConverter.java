@@ -1,8 +1,8 @@
-package com.lazybrary.unitconverter;
+package com.lazybrary.unit;
 
-import com.lazybrary.unitconverter.exception.UnitConverterException;
-import com.lazybrary.unitconverter.units.Length;
-import com.lazybrary.unitconverter.units.Weight;
+import com.lazybrary.unit.exception.UnitConverterException;
+import com.lazybrary.unit.units.Length;
+import com.lazybrary.unit.units.Weight;
 
 import java.util.Objects;
 

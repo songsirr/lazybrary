@@ -1,6 +1,6 @@
-package com.lazybrary.unitconverter.units;
+package com.lazybrary.unit.units;
 
-import com.lazybrary.unitconverter.exception.UnitConverterException;
+import com.lazybrary.unit.exception.UnitConverterException;
 
 public enum Weight {
 
