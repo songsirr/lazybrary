@@ -1,11 +1,9 @@
-package com.lazybrary.unitconverter;
+package com.lazybrary.unit;
 
-import com.lazybrary.unitconverter.units.Length;
-import com.lazybrary.unitconverter.units.Weight;
+import com.lazybrary.unit.units.Length;
+import com.lazybrary.unit.units.Weight;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UnitConverterTest {
 
