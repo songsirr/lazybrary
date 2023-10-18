@@ -1,7 +1,5 @@
 package com.lazybrary.unit.exception;
 
-import com.sun.istack.internal.NotNull;
-
 /**
  * Exception used to indicate a problem while convert to unit
  *
@@ -21,7 +19,7 @@ public class NotSupportedUnitException extends UnitConverterException{
      * @param clazz  class name what you used
      * @param input  what you input
      */
-    public NotSupportedUnitException(@NotNull Class clazz, String input) {
+    public NotSupportedUnitException(Class clazz, String input) {
         super("Not supported " + clazz.getSimpleName() + " unit of : " + input);
     }
 
