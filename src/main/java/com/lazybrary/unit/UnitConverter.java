@@ -1,5 +1,6 @@
 package com.lazybrary.unit;
 
+import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
 import com.lazybrary.unit.units.Length;
 import com.lazybrary.unit.units.Weight;
@@ -43,7 +44,7 @@ public class UnitConverter {
 //            return ((Temperature) fromUnit).convertTo((Temperature) toUnit, value);
         }
         else {
-            throw new UnitConverterException("Unsupported unit type.");
+            throw new NotSupportedUnitException("Not supported unit.");
         }
     }
 }

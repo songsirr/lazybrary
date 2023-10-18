@@ -1,6 +1,6 @@
 package com.lazybrary.unit.units;
 
-import com.lazybrary.unit.exception.UnitConverterException;
+import com.lazybrary.unit.exception.NotSupportedTypeException;
 
 public enum Weight {
 
@@ -35,7 +35,7 @@ public enum Weight {
             }
         }
 
-        throw new UnitConverterException("Unsupported wright unit of: " + unit);
+        throw new NotSupportedTypeException(Weight.class, unit);
     }
 
     public double convertTo(Weight toUnit, double value) {

@@ -1,6 +1,6 @@
 package com.lazybrary.unit.units;
 
-import com.lazybrary.unit.exception.UnitConverterException;
+import com.lazybrary.unit.exception.NotSupportedTypeException;
 
 public enum Length {
 
@@ -37,7 +37,7 @@ public enum Length {
             }
         }
 
-        throw new UnitConverterException("Unsupported length unit of: " + unit);
+        throw new NotSupportedTypeException(Length.class, unit);
     }
 
     public double convertTo(Length toUnit, double value) {
