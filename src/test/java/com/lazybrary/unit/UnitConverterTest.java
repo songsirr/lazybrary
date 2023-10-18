@@ -25,6 +25,18 @@ class UnitConverterTest {
     }
 
     @Test
+    void lengthTest_chaining(){
+        double convertedValue = UnitConverter.from(Length.MILLIMETER, 10).to(Length.CENTIMETER).to(Length.METER).convert();
+        Assertions.assertEquals(convertedValue, 0.01);
+    }
+
+    @Test
+    void lengthTest_chaining2(){
+        double convertedValue = UnitConverter.from(Length.CENTIMETER, 100).to(Length.METER).to(Length.KILOMETER).to(Length.CENTIMETER).convert();
+        Assertions.assertEquals(convertedValue, 100);
+    }
+
+    @Test
     void weightTest_correct(){
         double convertedTonne = UnitConverter.from(Weight.KILOGRAM, 1000).to(Weight.TONNE).convert();
         Assertions.assertEquals(convertedTonne, 1);
