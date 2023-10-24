@@ -9,8 +9,8 @@ public class LanguageUtil {
 
     /**
      * split Korean sentence or word into Hangul Jamo
-     * you can refer about Hangul Jamo from
-     * https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)
+     * you can refer about Hangul from
+     * <a href="https://en.wikipedia.org/wiki/Hangul_Jamo_(Unicode_block)">...</a>
      * @param target The sentence or word you want to separate
      * @return String array composed of Hangul Jamo
      */
@@ -25,9 +25,7 @@ public class LanguageUtil {
                 char val3 = (char)(c%28);
                 list.add(KoreanAlphabet.VAL1[val1]); // CHO-SUNG aka 초성
                 list.add(KoreanAlphabet.VAL2[val2]); // JOONG-SUNG aka 중성
-                if (val3 != 0){
-                    list.add(KoreanAlphabet.VAL3[val3]); // JONG-SUNG aka 종성
-                }
+                list.add(KoreanAlphabet.VAL3[val3]); // JONG-SUNG aka 종성, it can be empty
             } else {
                 list.add(Character.toString(c));
             }
