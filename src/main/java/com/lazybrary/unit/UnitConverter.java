@@ -2,6 +2,7 @@ package com.lazybrary.unit;
 
 import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
+import com.lazybrary.unit.units.FileSize;
 import com.lazybrary.unit.units.Length;
 import com.lazybrary.unit.units.Weight;
 
@@ -40,10 +41,9 @@ public class UnitConverter {
             return ((Length) fromUnit).convertTo((Length) toUnit, value);
         } else if (fromUnit instanceof Weight) {
             return ((Weight) fromUnit).convertTo((Weight) toUnit, value);
-//        } else if (fromUnit instanceof Temperature) {
-//            return ((Temperature) fromUnit).convertTo((Temperature) toUnit, value);
-        }
-        else {
+        } else if (fromUnit instanceof FileSize) {
+            return ((FileSize) fromUnit).convertTo((FileSize) toUnit, value);
+        } else {
             throw new NotSupportedUnitException("Not supported unit.");
         }
     }
