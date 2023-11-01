@@ -3,6 +3,7 @@ package com.lazybrary.unit;
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
+import com.lazybrary.unit.units.FileSize;
 import com.lazybrary.unit.units.Length;
 import com.lazybrary.unit.units.Weight;
 import org.junit.jupiter.api.Assertions;
@@ -46,6 +47,18 @@ class UnitConverterTest {
     void weightTest_wrong(){
         double convertedTonne = UnitConverter.from(Weight.KILOGRAM, 1000.1).to(Weight.TONNE).convert();
         Assertions.assertNotEquals(convertedTonne, 1);
+    }
+
+    @Test
+    void fileSizeTest_correct(){
+        double convertedSize = UnitConverter.from(FileSize.GIGABYTE, 1).to(FileSize.TERABYTE).convert();
+        Assertions.assertEquals(1/1024f, convertedSize);
+    }
+
+    @Test
+    void fileSizeTest_wrong(){
+        double convertedSize = UnitConverter.from(FileSize.MEGABYTE, 1).to(FileSize.KILOBYTE).convert();
+        Assertions.assertNotEquals(1023, convertedSize);
     }
 
     @Test
