@@ -19,4 +19,10 @@ class StringUtilTest {
         Assertions.assertTrue(StringUtil.isNullOrEmpty(nullString));
         Assertions.assertTrue(StringUtil.isNullOrEmpty(emptyString));
     }
+
+    @Test
+    void commaTest(){
+        String comma = StringUtil.comma(232220111);
+        Assertions.assertEquals("232,220,111", comma);
+    }
 }
