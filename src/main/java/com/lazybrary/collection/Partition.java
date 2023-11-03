@@ -38,4 +38,8 @@ public class Partition<T> extends AbstractList<List<T>> {
     public int size() {
         return (int) Math.ceil((double) list.size() / (double) chunkSize);
     }
+
+    public Partition<T> reSizing(int chunkSize){
+        return new Partition<T>(this.list, chunkSize);
+    }
 }

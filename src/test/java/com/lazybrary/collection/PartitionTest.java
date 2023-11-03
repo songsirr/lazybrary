@@ -23,5 +23,9 @@ public class PartitionTest {
         Partition<Integer> p = new Partition<Integer>(list, 500);
         Assertions.assertEquals(p.size(), 6);
         Assertions.assertEquals(p.get(1).get(0), 500);
+
+        Partition<Integer> reSized = p.reSizing(1000);
+        Assertions.assertEquals(reSized.size(), 3);
+        Assertions.assertEquals(reSized.get(1).get(0), 1000);
     }
 }
