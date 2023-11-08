@@ -16,4 +16,19 @@ public class ObjectUtil {
         }
         return false;
     }
+
+    public static boolean isNullObject(Object o){
+        for (Field f : o.getClass().getDeclaredFields()){
+            f.setAccessible(true);
+            try {
+                if (f.get(o) != null){
+                    System.out.println(f.get(o));
+                    return false;
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return true;
+    }
 }

@@ -19,7 +19,28 @@ class ObjectUtilTest {
         Assertions.assertFalse(f);
     }
 
-    class Pojo {
+    @Test
+    void isNullObjectTest_empty(){
+        EmptyPojo pojo = new EmptyPojo(true);
+        boolean f = ObjectUtil.isNullObject(pojo);
+        Assertions.assertTrue(f);
+    }
+
+    @Test
+    void isNullObjectTest_not_empty(){
+        EmptyPojo pojo = new EmptyPojo(false);
+        boolean f = ObjectUtil.isNullObject(pojo);
+        Assertions.assertFalse(f);
+    }
+
+    @Test
+    void isNullObjectTest_has_primitive_type(){
+        PriPojo pojo = new PriPojo("Hello");
+        boolean f = ObjectUtil.isNullObject(pojo);
+        Assertions.assertFalse(f);
+    }
+
+    static class Pojo {
         private String val1;
 
         private Integer val2;
@@ -41,10 +62,38 @@ class ObjectUtilTest {
         }
     }
 
-    class SubPojo {
+    static class SubPojo {
         private String val1;
 
         public SubPojo() {
+        }
+    }
+
+    static class EmptyPojo {
+        private String val1;
+
+        private String val2;
+
+        public EmptyPojo(boolean isEmpty) {
+            if (!isEmpty){
+                this.val1 = "val1";
+                this.val2 = "val2";
+            }
+        }
+    }
+
+    static class PriPojo {
+        private int i;
+
+        private String s;
+
+        public PriPojo(int i, String s) {
+            this.i = i;
+            this.s = s;
+        }
+
+        public PriPojo(String s) {
+            this.s = s;
         }
     }
 }
