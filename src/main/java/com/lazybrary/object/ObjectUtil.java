@@ -22,7 +22,6 @@ public class ObjectUtil {
             f.setAccessible(true);
             try {
                 if (f.get(o) != null){
-                    System.out.println(f.get(o));
                     return false;
                 }
             } catch (IllegalAccessException e) {
