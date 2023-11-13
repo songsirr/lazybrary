@@ -40,6 +40,17 @@ class ObjectUtilTest {
         Assertions.assertFalse(f);
     }
 
+    @Test
+    void removeEmptyStringFieldsTest(){
+        EmptyPojo pojo = new EmptyPojo(false);
+        pojo.setVal1("");
+
+        ObjectUtil.removeEmptyStringFields(pojo);
+        
+        Assertions.assertNull(pojo.val1);
+        Assertions.assertNotNull(pojo.val2);
+    }
+
     static class Pojo {
         private String val1;
 
@@ -79,6 +90,14 @@ class ObjectUtilTest {
                 this.val1 = "val1";
                 this.val2 = "val2";
             }
+        }
+
+        public void setVal1(String val1) {
+            this.val1 = val1;
+        }
+
+        public void setVal2(String val2) {
+            this.val2 = val2;
         }
     }
 

@@ -1,6 +1,8 @@
 package com.lazybrary.object;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
+
 public class ObjectUtil {
 
     public static boolean hasNullField(Object o) {
@@ -29,5 +31,21 @@ public class ObjectUtil {
             }
         }
         return true;
+    }
+
+    public static void removeEmptyStringFields(Object o){
+        Objects.requireNonNull(o);
+        for (Field f : o.getClass().getDeclaredFields()){
+            f.setAccessible(true);
+            try {
+                if (f.getType().equals(String.class)){
+                    if (f.get(o).equals("")){
+                        f.set(o, null);
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
