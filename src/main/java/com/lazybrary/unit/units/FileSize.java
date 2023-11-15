@@ -2,7 +2,7 @@ package com.lazybrary.unit.units;
 
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 
-public enum FileSize {
+public enum FileSize implements Convertible<FileSize> {
 
     BIT("bit", "b", 1),
     BYTE("byte", "B", BIT.value * 8),
@@ -38,6 +38,7 @@ public enum FileSize {
         throw new NotSupportedTypeException(FileSize.class, unit);
     }
 
+    @Override
     public double convertTo(FileSize toUnit, double value) {
         return value * this.value / toUnit.value;
     }

@@ -2,18 +2,15 @@ package com.lazybrary.unit;
 
 import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
-import com.lazybrary.unit.units.FileSize;
-import com.lazybrary.unit.units.Length;
-import com.lazybrary.unit.units.Time;
-import com.lazybrary.unit.units.Weight;
+import com.lazybrary.unit.units.*;
 
 import java.util.Objects;
 
 public class UnitConverter {
 
-    private double value;
+    private final double value;
 
-    private Enum<?> fromUnit;
+    private final Enum<?> fromUnit;
 
     private Enum<?> toUnit;
 
@@ -33,21 +30,20 @@ public class UnitConverter {
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public double convert(){
-        if (fromUnit.getClass() != toUnit.getClass()){
-            throw new UnitConverterException("Units are not of the same type.");
-        }
+        validateUnits();
 
-        if (fromUnit instanceof Length){
-            return ((Length) fromUnit).convertTo((Length) toUnit, value);
-        } else if (fromUnit instanceof Weight) {
-            return ((Weight) fromUnit).convertTo((Weight) toUnit, value);
-        } else if (fromUnit instanceof FileSize) {
-            return ((FileSize) fromUnit).convertTo((FileSize) toUnit, value);
-        } else if (fromUnit instanceof Time) {
-            return ((Time) fromUnit).convertTo((Time) toUnit, value);
+        if (fromUnit instanceof Convertible){
+            return ((Convertible)fromUnit).convertTo(toUnit, value);
         } else {
             throw new NotSupportedUnitException("Not supported unit.");
+        }
+    }
+
+    private void validateUnits() {
+        if (fromUnit.getClass() != toUnit.getClass()) {
+            throw new UnitConverterException("Units are not of the same type.");
         }
     }
 }

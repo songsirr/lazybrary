@@ -2,7 +2,7 @@ package com.lazybrary.unit.units;
 
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 
-public enum Time {
+public enum Time implements Convertible<Time> {
 
     NANOSECOND("nanosecond", "ns", 1),
     MICROSECOND("microsecond", "μs", NANOSECOND.value * 1000),
@@ -36,6 +36,7 @@ public enum Time {
         throw new NotSupportedTypeException(Length.class, unit);
     }
 
+    @Override
     public double convertTo(Time toUnit, double value) {
         return value * this.value / toUnit.value;
     }

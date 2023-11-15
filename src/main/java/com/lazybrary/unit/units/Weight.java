@@ -2,7 +2,7 @@ package com.lazybrary.unit.units;
 
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 
-public enum Weight {
+public enum Weight implements Convertible<Weight> {
 
     // SI
     MILLIGRAM("milligram", "mg", 1),
@@ -38,6 +38,7 @@ public enum Weight {
         throw new NotSupportedTypeException(Weight.class, unit);
     }
 
+    @Override
     public double convertTo(Weight toUnit, double value) {
         return value * this.value / toUnit.value;
     }

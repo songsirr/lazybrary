@@ -2,7 +2,7 @@ package com.lazybrary.unit.units;
 
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 
-public enum Length {
+public enum Length implements Convertible<Length>{
 
     // SI
     MILLIMETER("millimeter", "mm", 1),
@@ -40,6 +40,7 @@ public enum Length {
         throw new NotSupportedTypeException(Length.class, unit);
     }
 
+    @Override
     public double convertTo(Length toUnit, double value) {
         return value * this.value / toUnit.value;
     }
