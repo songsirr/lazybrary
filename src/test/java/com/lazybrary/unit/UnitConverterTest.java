@@ -5,6 +5,7 @@ import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
 import com.lazybrary.unit.units.FileSize;
 import com.lazybrary.unit.units.Length;
+import com.lazybrary.unit.units.Time;
 import com.lazybrary.unit.units.Weight;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -59,6 +60,18 @@ class UnitConverterTest {
     void fileSizeTest_wrong(){
         double convertedSize = UnitConverter.from(FileSize.MEGABYTE, 1).to(FileSize.KILOBYTE).convert();
         Assertions.assertNotEquals(1023, convertedSize);
+    }
+
+    @Test
+    void TimeTest_correct(){
+        double convertedTime = UnitConverter.from(Time.MINUTE, 3).to(Time.SECOND).convert();
+        Assertions.assertEquals(180, convertedTime);
+    }
+
+    @Test
+    void TimeTest_wrong(){
+        double convertedTime = UnitConverter.from(Time.MINUTE, 3).to(Time.SECOND).convert();
+        Assertions.assertNotEquals(120, convertedTime);
     }
 
     @Test

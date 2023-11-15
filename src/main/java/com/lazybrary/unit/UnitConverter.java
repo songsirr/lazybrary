@@ -4,6 +4,7 @@ import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
 import com.lazybrary.unit.units.FileSize;
 import com.lazybrary.unit.units.Length;
+import com.lazybrary.unit.units.Time;
 import com.lazybrary.unit.units.Weight;
 
 import java.util.Objects;
@@ -43,6 +44,8 @@ public class UnitConverter {
             return ((Weight) fromUnit).convertTo((Weight) toUnit, value);
         } else if (fromUnit instanceof FileSize) {
             return ((FileSize) fromUnit).convertTo((FileSize) toUnit, value);
+        } else if (fromUnit instanceof Time) {
+            return ((Time) fromUnit).convertTo((Time) toUnit, value);
         } else {
             throw new NotSupportedUnitException("Not supported unit.");
         }
