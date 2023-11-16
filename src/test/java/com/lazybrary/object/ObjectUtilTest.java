@@ -51,6 +51,13 @@ class ObjectUtilTest {
         Assertions.assertNotNull(pojo.val2);
     }
 
+    @Test
+    void removeNullFieldTest(){
+        Pojo p = new Pojo(true);
+        ObjectUtil.removeNullField(p);
+        Assertions.assertFalse(ObjectUtil.hasNullField(p));
+    }
+
     static class Pojo {
         private String val1;
 
