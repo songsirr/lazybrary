@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollectionUtil {
+public final class CollectionUtil {
+
+    // prevent create instance
+    private CollectionUtil() {}
 
     /**
      * find object by key from list
