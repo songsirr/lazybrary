@@ -19,33 +19,48 @@ public enum Temperature implements Convertible {
 
     @Override
     public double convertTo(Enum toUnit, double value) {
-        if (this.equals(CELSIUS)){
-            switch (toUnit.name()) {
-                case "FAHRENHEIT":
-                    return (value * 9/5) + 32;
-                case "KELVIN":
-                    return value + 273.15;
-                default:
-                    return value;
-            }
-        } else if (this.equals(FAHRENHEIT)) {
-            switch (toUnit.name()) {
-                case "CELSIUS":
-                    return (value - 32) * 5/9;
-                case "KELVIN":
-                    return (value - 32) * 5/9 + 273.15;
-                default:
-                    return value;
-            }
-        } else { // from kelvin
-            switch (toUnit.name()) {
-                case "CELSIUS":
-                    return value - 273.15;
-                case "FAHRENHEIT":
-                    return (value - 273.15) * 9/5 + 32;
-                default:
-                    return value;
-            }
+        switch (this) {
+            case CELSIUS:
+                return convertCelsius(toUnit, value);
+            case FAHRENHEIT:
+                return convertFahrenheit(toUnit, value);
+            case KELVIN:
+                return convertKelvin(toUnit, value);
+            default:
+                return value;
+        }
+    }
+
+    private double convertCelsius(Enum toUnit, double value) {
+        switch ((Temperature) toUnit) {
+            case FAHRENHEIT:
+                return (value * 9 / 5) + 32;
+            case KELVIN:
+                return value + 273.15;
+            default:
+                return value;
+        }
+    }
+
+    private double convertFahrenheit(Enum toUnit, double value) {
+        switch ((Temperature) toUnit) {
+            case CELSIUS:
+                return (value - 32) * 5 / 9;
+            case KELVIN:
+                return (value - 32) * 5 / 9 + 273.15;
+            default:
+                return value;
+        }
+    }
+
+    private double convertKelvin(Enum toUnit, double value) {
+        switch ((Temperature) toUnit) {
+            case CELSIUS:
+                return value - 273.15;
+            case FAHRENHEIT:
+                return (value - 273.15) * 9 / 5 + 32;
+            default:
+                return value;
         }
     }
 }
