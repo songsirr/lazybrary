@@ -3,10 +3,7 @@ package com.lazybrary.unit;
 import com.lazybrary.unit.exception.NotSupportedTypeException;
 import com.lazybrary.unit.exception.NotSupportedUnitException;
 import com.lazybrary.unit.exception.UnitConverterException;
-import com.lazybrary.unit.units.FileSize;
-import com.lazybrary.unit.units.Length;
-import com.lazybrary.unit.units.Time;
-import com.lazybrary.unit.units.Weight;
+import com.lazybrary.unit.units.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -100,6 +97,18 @@ class UnitConverterTest {
             UnitConverter.from(Length.CENTIMETER, 2.54).to(wrongEnum).convert();
         }).isInstanceOf(UnitConverterException.class)
                 .hasMessage("Units are not of the same type.");
+    }
+
+    @Test
+    void TempConvert(){
+        double baseCel = 36.5; // f: 97.7, k: 309.65
+        double baseFah = 97.7; // c: 36.5, k: 309.65
+
+        Assertions.assertEquals(UnitConverter.from(Temperature.CELSIUS, baseCel).to(Temperature.FAHRENHEIT).convert(), 97.7);
+        Assertions.assertEquals(UnitConverter.from(Temperature.CELSIUS, baseCel).to(Temperature.KELVIN).convert(), 309.65);
+        Assertions.assertEquals(UnitConverter.from(Temperature.CELSIUS, baseCel).to(Temperature.CELSIUS).convert(), 36.5);
+        Assertions.assertEquals(UnitConverter.from(Temperature.FAHRENHEIT, baseFah).to(Temperature.CELSIUS).convert(), 36.5);
+        Assertions.assertEquals(UnitConverter.from(Temperature.FAHRENHEIT, baseFah).to(Temperature.KELVIN).convert(), 309.65);
     }
 
     private enum WrongEnum{
