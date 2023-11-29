@@ -1,6 +1,7 @@
 package com.lazybrary.collection;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,5 +56,20 @@ public final class CollectionUtil {
         }
 
         return map;
+    }
+
+    public static <T> List<T> subList(List<T> list, int from, int to) {
+        if (list.size() > from) {
+            return list.subList(from, Math.min(to, list.size()));
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public static <T> List<T> listPagination(List<T> list, int offset, int limit) {
+        int size = list.size();
+        int fromIndex = offset * limit;
+        int toIndex = Math.min(fromIndex + limit, size);
+        return subList(list, fromIndex, toIndex);
     }
 }
