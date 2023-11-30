@@ -15,21 +15,25 @@ public class LanguageUtil {
      * @return String array composed of Hangul Jamo
      */
     public static String[] koreanSplitter(String target){
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < target.length(); i++){
-            char c = target.charAt(i);
-            if (c >= KoreanAlphabet.KOREAN_UNI){
-                c = (char)(c - KoreanAlphabet.KOREAN_UNI);
-                char val1 = (char)(c/28/21);
-                char val2 = (char)((c)/28%21);
-                char val3 = (char)(c%28);
-                list.add(KoreanAlphabet.VAL1[val1]); // CHO-SUNG aka 초성
-                list.add(KoreanAlphabet.VAL2[val2]); // JOONG-SUNG aka 중성
-                list.add(KoreanAlphabet.VAL3[val3]); // JONG-SUNG aka 종성, it can be empty
+        List<String> result = new ArrayList<>();
+
+        for (int i = 0; i < target.length(); i++) {
+            char currentChar = target.charAt(i);
+
+            if (currentChar >= KoreanAlphabet.KOREAN_UNI) {
+                int adjustedCode = currentChar - KoreanAlphabet.KOREAN_UNI;
+                char choSung = (char) (adjustedCode / 28 / 21);
+                char joongSung = (char) ((adjustedCode / 28) % 21);
+                char jongSung = (char) (adjustedCode % 28);
+
+                result.add(KoreanAlphabet.VAL1[choSung]); // CHO-SUNG aka 초성
+                result.add(KoreanAlphabet.VAL2[joongSung]); // JOONG-SUNG aka 중성
+                result.add(KoreanAlphabet.VAL3[jongSung]); // JONG-SUNG aka 종성, it can be empty
             } else {
-                list.add(Character.toString(c));
+                result.add(Character.toString(currentChar));
             }
         }
-        return list.toArray(list.toArray(new String[0]));
+
+        return result.toArray(new String[0]);
     }
 }
