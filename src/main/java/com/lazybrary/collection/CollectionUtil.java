@@ -58,6 +58,16 @@ public final class CollectionUtil {
         return map;
     }
 
+    /**
+     * Retrieves a sub-list from the provided list based on the specified range.
+     * If the 'from' index exceeds the list size, an empty list is returned.
+     *
+     * @param list The original list.
+     * @param from The starting index for the sub-list.
+     * @param to   The ending index for the sub-list (exclusive).
+     * @param <T>  The type of elements in the list.
+     * @return A sub-list of type T.
+     */
     public static <T> List<T> subList(List<T> list, int from, int to) {
         if (list.size() > from) {
             return list.subList(from, Math.min(to, list.size()));
@@ -66,6 +76,16 @@ public final class CollectionUtil {
         }
     }
 
+    /**
+     * Performs pagination on the given list by calculating the appropriate
+     * 'fromIndex' and 'toIndex' based on the specified offset and limit.
+     *
+     * @param list   The original list to paginate.
+     * @param offset The offset indicating the page number (starting from 0).
+     * @param limit  The maximum number of elements per page.
+     * @param <T>    The type of elements in the list.
+     * @return A paginated sub-list of type T.
+     */
     public static <T> List<T> listPagination(List<T> list, int offset, int limit) {
         int size = list.size();
         int fromIndex = offset * limit;
